@@ -4,8 +4,8 @@ import {Ionicons} from '@expo/vector-icons';
 // Imports de mes composants de navigation.
 import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
 // Imports de mes screens présent dans ma navigation.
-import SignInScreen from './SignInScreen';
 import SignUpScreen from './SignUpScreen';
+import SignInScreen from './SignInScreen';
 import HomeScreen from './HomeScreen';
 import AccountScreen from './AccountScreen';
 import SearchScreen from './SearchScreen';

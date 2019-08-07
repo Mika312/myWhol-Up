@@ -2,16 +2,10 @@ import React, { Component } from 'react';
 import {View} from 'react-native';
 import { Button, Input, Divider} from 'react-native-elements';
 
-class SignInScreen extends Component { 
+class SignUpScreen extends Component { 
   render() {
   return (
     <View style={{ flex: 1, backgroundColor:'#FFFFFF', alignItems: 'center',justifyContent:'center'}}>  
-    <Input
-     placeholder='FirstName'
-     />
-      <Input
-     placeholder='LastName'
-     />
       <Input
      placeholder='Email'
      />
@@ -28,4 +22,4 @@ class SignInScreen extends Component {
  }
 }
 
-export default SignInScreen;
+export default SignUpScreen;
