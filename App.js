@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {View } from 'react-native';
 import Navigation from './components/Navigation';
 import contactsList from './components/reducers/contact.reducer';
+import userData from './components/reducers/user.reducer';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
-const store = createStore(combineReducers({contactsList}));
+const store = createStore(combineReducers({contactsList,userData}));
 
 
 

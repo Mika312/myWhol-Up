@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {View} from 'react-native';
 import { Button, Input, Divider} from 'react-native-elements';
-import ipconfig from '../config.js'
+import ipconfig from '../config.js';
+import {connect} from 'react-redux';
 
-class SignUpScreen extends Component { 
+
+class SignInScreen extends Component { 
   constructor() {
 // Creation des 2 etats initialisé vide dans le constructeur.
     super();
@@ -31,6 +33,7 @@ class SignUpScreen extends Component {
 // En fonction du résultat reçu, mise en place  de deux scénarios différents.
 // Si on a un resultat alors on rejoint la page Compte.
   if(data.result){
+    ctx.props.handleUserValid(data.users.last_name, data.users.first_name, data.users.email, data.users.token)
     ctx.props.navigation.navigate('Account');
 // Sinon on a un message d'erreur.
   }else{
@@ -71,4 +74,24 @@ class SignUpScreen extends Component {
  }
 }
 
-export default SignUpScreen;
+// Création d'un composant conteneur autour du composant SignUpScreen.
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUserValid : function(name_user, firstname_user, email_user, token_user) { 
+     dispatch( {type: 'setUserData',
+                last_name:name_user,
+                first_name:firstname_user,
+                email:email_user,
+                token:token_user,
+              } ) 
+   }
+  }
+ }
+
+// Modification de l’export pour que le composant conteneur puisse être utilisé à l'extérieur.
+ export default connect(
+  null, 
+  mapDispatchToProps
+)(SignInScreen);
+
+

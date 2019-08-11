@@ -35,10 +35,10 @@ Platform.OS === 'ios'
 ? iconName = 'ios-search'
 : iconName = 'md-search'
 } else if (navigation.state.routeName == 'Following') {
-    Platform.OS === 'ios'
-    ? iconName = 'ios-people'
-    : iconName = 'md-people'
-    } 
+Platform.OS === 'ios'
+? iconName = 'ios-people'
+: iconName = 'md-people'
+} 
 return <Ionicons name={iconName + outline} size={25} color={tintColor}/>;
 }
 }),
