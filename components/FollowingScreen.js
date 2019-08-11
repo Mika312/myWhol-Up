@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
 import {View, Text } from 'react-native';
-import { ListItem} from 'react-native-elements';
+import {Avatar, ListItem} from 'react-native-elements';
+import {connect} from 'react-redux';
+
 
 class FollowingScreen extends Component { 
   render() {
   
-    var list = [
-        {
-          name: 'Thomas Sauveton',
-          title: 'TS',
-          email: 'contact@gmail.com'
-        },
-        {
-          name: 'Anais NAVARRO',
-          title: 'AN',
-          email: 'contact@gmail.com'
-        },
-        {
-            name: 'Mia PELTIER',
-            title: 'MP',
-            email: 'contact@gmail.com'
-          },
-
-      ]
   return (
-    <View style={{ flex: 1, backgroundColor:'grey'}}>  
+    <View style={{ flex: 1, backgroundColor:'grey'}}> 
+  {/* Mise en place des instructions nécessaires pour parcourir l’intégralité de la propriété contacts. 
+  Et generer un nouveau composant <ListItem>  */}
     {
-    list.map((l, i) => (
+    this.props.contacts.map((l, i) => (
       <ListItem
-        key={i}
-        leftAvatar={{ title: l.title}}
-        title={l.name}
-        subtitle={l.email}
-      />
+      key={i}
+      leftAvatar={ <Avatar
+        small
+        rounded
+        title={l.last_name[0]+l.first_name[0]}
+        overlayContainerStyle={{backgroundColor: l.color}}
+      />}
+      title={l.last_name+" "+l.first_name}
+      subtitle={
+        <View >
+          <Text>{l.email}</Text>
+          <Text>{l.company_name}</Text> 
+        </View>
+      }
+    />
     ))
   }
     </View>
@@ -40,4 +36,14 @@ class FollowingScreen extends Component {
  }
 }
 
-export default FollowingScreen;
+// Mise en place du composant conteneur mapStateToProps pour exploiter 
+// contactsList afin de le déverser dans une propriété nommée contacts
+function mapStateToProps(state) {
+  return { contacts: state.contactsList }
+ }
+ 
+ export default connect(
+   mapStateToProps, 
+   null
+ )(FollowingScreen);
+
